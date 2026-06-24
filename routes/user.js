@@ -7,9 +7,11 @@ const {
   handleDeleteUserById,
 } = require("../controllers/user");
 
+const { accessTo } = require("../middlewares/accessTo");
+
 const router = Router();
 
-router.get("/", handleListAllUsers);
+router.get("/", accessTo("admin"), handleListAllUsers);
 
 router
   .route("/:userId")

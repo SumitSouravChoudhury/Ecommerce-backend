@@ -7,6 +7,8 @@ const { errorHandler } = require("./middlewares/errorHandler");
 const { authenticate } = require("./middlewares/authenticate");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/user");
+const productRoute = require("./routes/product");
+const cartRoute = require("./routes/cart");
 
 const app = express();
 
@@ -20,6 +22,8 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/auth", authRoute);
 app.use("/api/user", authenticate, userRoute);
+app.use("/api/product", authenticate, productRoute);
+app.use("/api/cart", authenticate, cartRoute);
 
 app.use(errorHandler);
 
