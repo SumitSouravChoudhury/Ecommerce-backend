@@ -4,14 +4,18 @@ const errorHandler = (err, req, res, _next) => {
 
   if (err.code === 11000) {
     const field = Object.keys(err.keyPattern)[0];
-    return res.status(409).json({ error: `${field} already exists` });
+    return res
+      .status(409)
+      .json({ success: false, message: `${field} already exists` });
   }
 
   if (err.name === "CastError") {
-    return res.status(400).json({ error: "Invalid ID format" });
+    return res
+      .status(400)
+      .json({ success: false, message: "Invalid ID format" });
   }
 
-  return res.status(status).json({ error: message });
+  return res.status(status).json({ success: false, message: message });
 };
 
 module.exports = { errorHandler };
