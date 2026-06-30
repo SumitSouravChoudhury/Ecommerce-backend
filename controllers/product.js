@@ -135,13 +135,13 @@ const handleUpdateProductById = async (req, res, next) => {
   } = req.body;
 
   if (
-    !productName ||
-    !productDescription ||
-    !productPrice ||
-    !productRating ||
-    !productQuantity ||
-    !productType ||
-    !productBrand ||
+    !productName &&
+    !productDescription &&
+    !productPrice &&
+    !productRating &&
+    !productQuantity &&
+    !productType &&
+    !productBrand &&
     !isAvailable
   ) {
     return res
@@ -162,6 +162,7 @@ const handleUpdateProductById = async (req, res, next) => {
 
     const product = await Product.findByIdAndUpdate(productId, updates, {
       new: true,
+      runValidators: true,
     }).select("-password");
 
     if (!product)

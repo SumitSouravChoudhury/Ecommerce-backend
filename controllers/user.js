@@ -62,6 +62,7 @@ const handleUpdateUserById = async (req, res, next) => {
 
     const user = await User.findByIdAndUpdate(userId, updates, {
       new: true,
+      runValidators: true,
     }).select("-password");
 
     if (!user)

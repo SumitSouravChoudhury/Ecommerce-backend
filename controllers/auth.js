@@ -67,7 +67,11 @@ const handleUserLogin = async (req, res, next) => {
     return res
       .status(200)
       .setHeader("Authorization", `Bearer ${token}`)
-      .json({ message: "Signed in successfully", userId: user._id });
+      .json({
+        success: true,
+        message: "Signed in successfully",
+        userId: user._id,
+      });
   } catch (error) {
     next(error);
   }
