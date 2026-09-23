@@ -64,14 +64,11 @@ const handleUserLogin = async (req, res, next) => {
 
     const token = createToken(user);
 
-    return res
-      .status(200)
-      .setHeader("Authorization", `Bearer ${token}`)
-      .json({
-        success: true,
-        message: "Signed in successfully",
-        userId: user._id,
-      });
+    return res.status(200).setHeader("Authorization", `Bearer ${token}`).json({
+      success: true,
+      message: "Signed in successfully",
+      userId: user._id,
+    });
   } catch (error) {
     next(error);
   }
